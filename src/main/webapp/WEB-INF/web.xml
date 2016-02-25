@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+    <display-name>Archetype Created Web Application</display-name>
+    <welcome-file-list>
+        <welcome-file>mainPage.jsp</welcome-file>
+    </welcome-file-list>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>./applicationContext.xml</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>MainPageServlet</servlet-name>
+        <servlet-class>com.minimatash.controller.MainPageServlet</servlet-class>
+    </servlet>
+
+<!--    <servlet>
+        <servlet-name>EmployeePageServlet</servlet-name>
+        <servlet-class>com.minimatash.controller.employee.EmployeePageServlet</servlet-class>
+    </servlet>-->
+    <servlet>
+        <servlet-name>AddEmployeeServlet</servlet-name>
+        <servlet-class>com.minimatash.controller.employee.AddEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteEmployeeServlet</servlet-name>
+        <servlet-class>com.minimatash.controller.employee.DeleteEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateEmployeeServlet</servlet-name>
+        <servlet-class>com.minimatash.controller.employee.UpdateEmployeeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DepartmentPageServlet</servlet-name>
+        <servlet-class>com.minimatash.controller.department.DepartmentPageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddDepartmentServlet</servlet-name>
+        <servlet-class>com.minimatash.controller.department.AddDepartmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteDepartmentServlet</servlet-name>
+        <servlet-class>com.minimatash.controller.department.DeleteDepartmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateDepartmentServlet</servlet-name>
+        <servlet-class>com.minimatash.controller.department.UpdateDepartmentServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>MainPageServlet</servlet-name>
+        <url-pattern>/mainPage.html</url-pattern>
+    </servlet-mapping>
+
+<!--    <servlet-mapping>
+        <servlet-name>EmployeePageServlet</servlet-name>
+        <url-pattern>/employeePage.html</url-pattern>
+    </servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>AddEmployeeServlet</servlet-name>
+        <url-pattern>/addEmployee.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteEmployeeServlet</servlet-name>
+        <url-pattern>/deleteEmployee.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateEmployeeServlet</servlet-name>
+        <url-pattern>/updateEmployee.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DepartmentPageServlet</servlet-name>
+        <url-pattern>/departmentPage.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddDepartmentServlet</servlet-name>
+        <url-pattern>/addDepartment.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteDepartmentServlet</servlet-name>
+        <url-pattern>/deleteDepartment.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateDepartmentServlet</servlet-name>
+        <url-pattern>/updateDepartment.html</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
+
