@@ -13,12 +13,12 @@ import java.util.*;
 
 public class EmployeePersistenceImpl implements EmployeePersistence{
 
+    static ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+    static JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
+
     @Override
     public List<Employee> findAll() throws PersistenceException {
         String selectTableSQL = "SELECT * from EMPLOYEE";
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
-
         List<Employee> employees = new ArrayList<>();
         List<Map<String,Object>> rows = jdbcTemplate1.queryForList(selectTableSQL);
         EmployeeSearcher employeeSearcher = new EmployeeSearcher();
@@ -28,10 +28,7 @@ public class EmployeePersistenceImpl implements EmployeePersistence{
 
     @Override
     public Employee findOne(Integer searchId) throws PersistenceException {
-        String selectTableSQL = "SELECT empID, depID, firstName,lastName, dateOfBirth, validityOfContract from EMPLOYEE WHERE empID=?";
-
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
+        String selectTableSQL = "SELECT employeeId, departmentId, firstName,lastName, dateOfBirth, validityOfContract from EMPLOYEE WHERE employeeId=?";
         Employee employee = (Employee)jdbcTemplate1.queryForObject(
                 selectTableSQL, new Object[] { searchId }, new EmployeeRowMapper());
         return employee;
@@ -39,27 +36,21 @@ public class EmployeePersistenceImpl implements EmployeePersistence{
 
     @Override
     public void create(Employee employee) throws PersistenceException {
-        String insertTableSQL = "INSERT INTO EMPLOYEE" + "(depID, firstName, lastName, dateOfBirth,validityOfContract) VALUES" + "(?,?,?,?,?)";
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
+        String insertTableSQL = "INSERT INTO EMPLOYEE" + "(departmentId, firstName, lastName, dateOfBirth,validityOfContract) VALUES" + "(?,?,?,?,?)";
         jdbcTemplate1.update(insertTableSQL, new Object[]{ employee.getDepartmentId(), employee.getFirstName(), employee.getLastName(),
         employee.getDateOfBirth(), employee.getValidityOfContract()});
     }
 
     @Override
-    public void update(Integer empId, Employee employee) {
-        String updateTableSQL = "UPDATE EMPLOYEE set depID=?, firstName=?, lastName=?, dateOfBirth=?, validityOfContract=? WHERE empID=?";
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
+    public void update(Employee employee) {
+        String updateTableSQL = "UPDATE EMPLOYEE set departmentId=?, firstName=?, lastName=?, dateOfBirth=?, validityOfContract=? WHERE employeeId=?";
         jdbcTemplate1.update(updateTableSQL, new Object[]{ employee.getDepartmentId(), employee.getFirstName(),
-                employee.getLastName(),employee.getDateOfBirth(), employee.getValidityOfContract(), empId});
+                employee.getLastName(),employee.getDateOfBirth(), employee.getValidityOfContract(), employee.getEmployeeId()});
     }
 
     @Override
     public void delete(Integer id) {
-        String deleteTableSQL = "DELETE FROM EMPLOYEE WHERE empID = ?";
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
+        String deleteTableSQL = "DELETE FROM EMPLOYEE WHERE employeeId = ?";
         jdbcTemplate1.update(deleteTableSQL, new Object[]{id});
     }
 }

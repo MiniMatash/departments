@@ -1,6 +1,6 @@
 function deleteEmployee(id){
     $.ajax({
-        url: '/deleteEmployee.html?employeeID='+id,
+        url: '/deleteEmployee.html?employeeId='+id,
         method :'GET',
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status);

@@ -15,11 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+@WebServlet(urlPatterns = {"/departmentPage.html"})
 public class DepartmentPageServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Logger logger = Logger.getLogger(this.getClass());

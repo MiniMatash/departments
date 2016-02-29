@@ -10,7 +10,7 @@ jQuery(document).on('ready', function(){
                     .append($("<td>").text(data.lastName))      // Create HTML <td> element, set its text content with name of currently iterated product and append it to the <tr>.
                     .append($("<td>").text(data.dateOfBirth))
                     .append($("<td>").text(data.validityOfContract))
-                    .append($("<td>").text(data.depId))
+                    .append($("<td>").text(data.departmentId))
                     .append($("</tr></table>")));// Create HTML <td> element, set its text content with price of currently iterated product and append it to the <tr>.
                 //});
             }

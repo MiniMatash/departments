@@ -9,8 +9,8 @@ public class DepartmentSearcher {
     public void search(List<Map<String, Object>> rows, List<Department> departments){
         for (Map row : rows) {
             Department department = new Department();
-            department.setDepId((Integer) (row.get("depId")));
-            department.setDepName((String) row.get("depName"));
+            department.setDepartmentId((Integer) (row.get("departmentId")));
+            department.setDepartmentName((String) row.get("departmentName"));
             departments.add(department);
         }
     }

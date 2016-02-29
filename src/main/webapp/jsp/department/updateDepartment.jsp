@@ -26,7 +26,7 @@
     <tr bgcolor="#c8d8f8">
       <td valign=top>
         Department Name
-        <input type="text" name="departmentName" value="${departmentInfo.depName}" size=15 maxlength=20></td>
+        <input type="text" name="departmentName" value="${departmentInfo.departmentName}" size=15 maxlength=20></td>
     </tr>
 
     <tr bgcolor="#c8d8f8">

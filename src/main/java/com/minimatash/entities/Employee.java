@@ -15,12 +15,12 @@ public class Employee {
     private String lastName;
 
     @Id
-    @Column(name = "empId")
+    @Column(name = "employeeId")
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
     private Integer employeeId;
 
-    @Column(name = "depId")
+    @Column(name = "departmentId")
     private Integer departmentId;
 
     @Column(name = "dateOfBirth")

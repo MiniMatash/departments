@@ -32,14 +32,10 @@ public class EmployeePageServlet extends HttpServlet {
         super();
     }
 
-/*    @Autowired
-    private EmployeeService employeeService;*/
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-        EmployeeService employeeService = (EmployeeService) context.getBean("employeeHibernateServiceImpl");
-//        EmployeeService employeeService = new EmployeeHibernateServiceImpl();
+        EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
         boolean isAjax = Boolean.parseBoolean(request.getParameter("isAjax"));
         if (isAjax) {
             Gson gson = new Gson();

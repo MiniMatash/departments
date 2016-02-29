@@ -1,8 +1,8 @@
 package com.minimatash.persistence.impl;
 
-import com.minimatash.entities.Employee;
+import com.minimatash.entities.Department;
 import com.minimatash.exceptions.PersistenceException;
-import com.minimatash.persistence.EmployeePersistence;
+import com.minimatash.persistence.DepartmentPersistence;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,73 +16,72 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class EmployeeHibernatePersistenceImpl implements EmployeePersistence{
+public class DepartmentHibernatePersistenceImpl implements DepartmentPersistence {
 
     static ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
     static SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 
     @Override
-    public List<Employee> findAll() throws PersistenceException {
+    public List<Department> findAll() throws PersistenceException {
         Session session = sessionFactory.openSession();
-        List<Employee> employees = new ArrayList<>();
+        List<Department> departments = new ArrayList<>();
         try {
             session.beginTransaction();
-            Criteria crit = session.createCriteria(Employee.class);
+            Criteria crit = session.createCriteria(Department.class);
 
-            employees = crit.list();
+            departments = crit.list();
         }   catch (Exception e){
             System.out.println(e);
         }
-        return employees;
+        return departments;
     }
 
     @Override
-    public Employee findOne(Integer searchId) throws PersistenceException {
+    public Department findOne(Integer searchId) throws PersistenceException {
         Session session = sessionFactory.openSession();
-        List<Employee> employees = new ArrayList<>();
+        List<Department> departments = new ArrayList<>();
         try {
 //            session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            Criteria crit = session.createCriteria(Employee.class)
-                .add(Restrictions.eq("employeeId", searchId));
-            employees = crit.list();
+            Criteria crit = session.createCriteria(Department.class)
+                    .add(Restrictions.eq("departmentId", searchId));
+            departments = crit.list();
         }   catch (Exception e){
             System.out.println(e);
         }
-        Employee employee = employees.get(0);
-        return employee;
+        Department department = departments.get(0);
+        return department;
     }
 
-
     @Override
-    public void create(Employee employee) throws PersistenceException {
+    public void create(Department dept) throws PersistenceException {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.save(employee);
+        session.save(dept);
         tx.commit();
         session.close();
     }
 
     @Override
-    public void update(Employee employee) {
+    public void update(Department dep) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.update(employee);
+        session.update(dep);
         tx.commit();
         session.close();
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Integer deptId) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        Employee employee = null;
+        Department department = null;
         try {
-            employee = findOne(id);
+            department = findOne(deptId);
         } catch (PersistenceException e) {
             e.printStackTrace();
         }
-        session.delete(employee);
+        session.delete(department);
         tx.commit();
         session.close();
     }

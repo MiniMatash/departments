@@ -10,8 +10,8 @@ public class DepartmentRowMapper implements RowMapper {
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         Department department = new Department();
-        department.setDepId(rs.getInt("depId"));
-        department.setDepName(rs.getString("depName"));
+        department.setDepartmentId(rs.getInt("departmentId"));
+        department.setDepartmentName(rs.getString("departmentName"));
         return department;
     }
 }

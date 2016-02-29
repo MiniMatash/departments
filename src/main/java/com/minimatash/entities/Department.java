@@ -1,5 +1,7 @@
 package com.minimatash.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,46 +12,47 @@ import javax.persistence.Table;
 @Table(name = "department")
 public class Department {
 
-    @Column(name = "depName")
-    private String depName;
+    @Column(name = "departmentName")
+    private String departmentName;
 
     @Id
-    @Column(name = "depId")
-    @GeneratedValue
-    private Integer depId;
+    @Column(name = "departmentId")
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    private Integer departmentId;
 
-    public String getDepName() {
-        return depName;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setDepName(String depName) {
-        this.depName = depName;
+    public void setDepartmentName(String depName) {
+        this.departmentName = depName;
     }
 
-    public Integer getDepId() {
-        return depId;
+    public Integer getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepId(Integer depId) {
-        this.depId = depId;
+    public void setDepartmentId(Integer depId) {
+        this.departmentId = depId;
     }
 
     @Override
     public String toString() {
         return "Department{" +
-                "depName='" + depName + '\'' +
-                ", depId='" + depId + '\'' +
+                "departmentName='" + departmentName + '\'' +
+                ", departmentId='" + departmentId + '\'' +
                 '}';
     }
 
-    public Department(String depName)
+    public Department(String departmentName)
     {
-        this.depName =depName;
+        this.departmentName = departmentName;
     }
 
     public Department()
     {
-        depName =null;
-        depId =null;
+        departmentName =null;
+        departmentId =null;
     }
 }

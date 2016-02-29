@@ -15,12 +15,13 @@ import java.util.Map;
 
 public class DepartmentPersistenceImpl implements DepartmentPersistence{
 
+    static ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+    static JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
+
     @Override
     public List<Department> findAll()  throws PersistenceException
     {
         String selectTableSQL = "SELECT * from DEPARTMENT";
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
 
         List<Department> departments = new ArrayList<>();
         List<Map<String,Object>> rows = jdbcTemplate1.queryForList(selectTableSQL);
@@ -31,10 +32,7 @@ public class DepartmentPersistenceImpl implements DepartmentPersistence{
 
     @Override
     public Department findOne(Integer searchId) throws PersistenceException {
-        String selectTableSQL = "SELECT * from Department WHERE depID=?";
-
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
+        String selectTableSQL = "SELECT * from Department WHERE departmentId=?";
         Department department = (Department)jdbcTemplate1.queryForObject(
                 selectTableSQL, new Object[] { searchId }, new DepartmentRowMapper());
         return department;
@@ -42,26 +40,20 @@ public class DepartmentPersistenceImpl implements DepartmentPersistence{
 
     @Override
     public void create(Department department) throws PersistenceException {
-        String insertTableSQL = "INSERT INTO DEPARTMENT" + "(depName) VALUES" + "(?)";
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
-        jdbcTemplate1.update(insertTableSQL, new Object[]{department.getDepName()});
+        String insertTableSQL = "INSERT INTO DEPARTMENT" + "(departmentName) VALUES" + "(?)";
+        jdbcTemplate1.update(insertTableSQL, new Object[]{department.getDepartmentName()});
     }
 
     @Override
-    public void update(Integer depId,Department department) {
-        String updateTableSQL = "UPDATE DEPARTMENT set depName=? WHERE depID=?";
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
-        jdbcTemplate1.update(updateTableSQL, new Object[]{ department.getDepName(), depId});
+    public void update(Department department) {
+        String updateTableSQL = "UPDATE DEPARTMENT set departmentName=? WHERE departmentId=?";
+        jdbcTemplate1.update(updateTableSQL, new Object[]{ department.getDepartmentName(), department.getDepartmentId()});
 
     }
 
     @Override
     public void delete(Integer depId) {
-        String deleteTableSQL = "DELETE FROM DEPARTMENT WHERE depID = ?";
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
+        String deleteTableSQL = "DELETE FROM DEPARTMENT WHERE departmentId = ?";
         jdbcTemplate1.update(deleteTableSQL, new Object[]{depId});
     }
 }

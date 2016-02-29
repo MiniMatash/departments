@@ -7,8 +7,11 @@ import com.minimatash.service.EmployeeService;
 import com.minimatash.service.impl.EmployeeServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,12 +20,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@WebServlet(urlPatterns = {"/addEmployee.html"})
 public class AddEmployeeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Logger logger = Logger.getLogger(this.getClass());
 
-    @Autowired
-    private EmployeeService employeeService;
+    ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+    EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response){
@@ -45,10 +49,9 @@ public class AddEmployeeServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        int dep_ID = Integer.parseInt(request.getParameter("department_ID"));
+        int departmentId = Integer.parseInt(request.getParameter("department_ID"));
         int validityOfContract = Integer.parseInt(request.getParameter("validityOfContract"));
-        Employee emp = new Employee(fname,lname,dep_ID,dateOfBirth,validityOfContract);
-
+        Employee emp = new Employee(fname,lname,departmentId,dateOfBirth,validityOfContract);
         try {
             employeeService.create(emp);
         }

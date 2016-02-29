@@ -3,6 +3,7 @@ package com.minimatash.controller.department;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,10 +12,11 @@ import com.minimatash.entities.Department;
 import com.minimatash.exceptions.PersistenceException;
 import com.minimatash.persistence.impl.DepartmentPersistenceImpl;
 import com.minimatash.service.DepartmentService;
-import com.minimatash.service.impl.DepartmentServiceImpl;
 import org.apache.log4j.Logger;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
+@WebServlet(urlPatterns = {"/updateDepartment.html"})
 public class UpdateDepartmentServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private Logger logger = Logger.getLogger(this.getClass());
@@ -34,10 +36,12 @@ public class UpdateDepartmentServlet extends HttpServlet{
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+        DepartmentService departmentService = (DepartmentService) context.getBean("departmentService");
         String depName =  request.getParameter("departmentName");
         Department department = new Department(depName);
-        DepartmentService updateMethod = new DepartmentServiceImpl();
-        updateMethod.update(departmentID, department);
+        department.setDepartmentId(departmentID);
+        departmentService.update(department);
     }
 
     //Get Country Information

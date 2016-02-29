@@ -9,7 +9,7 @@ public interface DepartmentService {
         public List<Department> findAll()throws ServiceException;
         public Department findOne(Integer searchId) throws ServiceException;
         public void create(Department dept)throws ServiceException;
-        public void update(Integer dept_id, Department dep);
-        public void delete(Integer dept_id);
+        public void update(Department dep);
+        public void delete(Integer deptId);
 }
 

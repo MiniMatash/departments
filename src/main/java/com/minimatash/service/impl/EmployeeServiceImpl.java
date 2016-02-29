@@ -7,11 +7,12 @@ import com.minimatash.persistence.EmployeePersistence;
 import com.minimatash.persistence.impl.EmployeePersistenceImpl;
 import com.minimatash.service.EmployeeService;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.util.*;
 
-
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     private DataSource dataSource;
@@ -53,8 +54,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void update(Integer empid, Employee employee) {
-        employeePersistence.update(empid, employee);
+    public void update(Employee employee) {
+        employeePersistence.update(employee);
     }
 
     @Override

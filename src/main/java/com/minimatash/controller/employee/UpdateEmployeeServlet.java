@@ -6,18 +6,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.minimatash.entities.Employee;
-import com.minimatash.exceptions.PersistenceException;
-import com.minimatash.persistence.impl.EmployeePersistenceImpl;
+import com.minimatash.exceptions.ServiceException;
 import com.minimatash.service.EmployeeService;
-import com.minimatash.service.impl.EmployeeServiceImpl;
 import org.apache.log4j.Logger;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
+@WebServlet(urlPatterns = {"/updateEmployee.html"})
 public class UpdateEmployeeServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private Logger logger = Logger.getLogger(this.getClass());
@@ -26,6 +27,9 @@ public class UpdateEmployeeServlet extends HttpServlet{
     public UpdateEmployeeServlet() {
         super();
     }
+
+    ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+    EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String adress = request.getQueryString();
@@ -49,18 +53,17 @@ public class UpdateEmployeeServlet extends HttpServlet{
         int dep_ID = Integer.parseInt(request.getParameter("department_ID"));
         int validityOfContract = Integer.parseInt(request.getParameter("validityOfContract"));
         Employee emp = new Employee(fname,lname,dep_ID,dateOfBirth,validityOfContract);
-        EmployeeService updateMethod = new EmployeeServiceImpl();
-        updateMethod.update(employeeID,emp);
+        emp.setEmployeeId(employeeID);
+        employeeService.update(emp);
     }
 
     //Get Country Information
     private Employee getInfo(int employeeID) {
 
         Employee employee = new Employee();
-        EmployeePersistenceImpl findMethod = new EmployeePersistenceImpl();
         try {
-            employee = findMethod.findOne(employeeID);
-        } catch (PersistenceException e) {
+            employee = employeeService.findOne(employeeID);
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
         return employee;

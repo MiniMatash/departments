@@ -12,7 +12,7 @@ public interface EmployeeService {
 
     public void create(Employee employee) throws ServiceException;
 
-    public void update(Integer empid, Employee employee);
+    public void update(Employee employee);
 
     public void delete(Integer id);
     }
