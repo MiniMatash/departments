@@ -33,9 +33,9 @@ public class AddEmployeeServlet extends HttpServlet {
         try {
             request.getRequestDispatcher("jsp/employee/addEmployee.jsp").forward(request, response);
         } catch (ServletException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 
@@ -47,7 +47,7 @@ public class AddEmployeeServlet extends HttpServlet {
         try {
             dateOfBirth =  aDate.parse(request.getParameter("DateOfBirth"));
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         int departmentId = Integer.parseInt(request.getParameter("department_ID"));
         int validityOfContract = Integer.parseInt(request.getParameter("validityOfContract"));

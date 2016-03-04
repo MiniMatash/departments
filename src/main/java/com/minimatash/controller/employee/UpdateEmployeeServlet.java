@@ -48,7 +48,7 @@ public class UpdateEmployeeServlet extends HttpServlet{
         try {
             dateOfBirth =  aDate.parse(request.getParameter("DateOfBirth"));
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         int dep_ID = Integer.parseInt(request.getParameter("department_ID"));
         int validityOfContract = Integer.parseInt(request.getParameter("validityOfContract"));
@@ -57,14 +57,13 @@ public class UpdateEmployeeServlet extends HttpServlet{
         employeeService.update(emp);
     }
 
-    //Get Country Information
     private Employee getInfo(int employeeID) {
 
         Employee employee = new Employee();
         try {
             employee = employeeService.findOne(employeeID);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         return employee;
     }

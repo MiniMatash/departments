@@ -44,7 +44,6 @@ public class UpdateDepartmentServlet extends HttpServlet{
         departmentService.update(department);
     }
 
-    //Get Country Information
     private Department getInfo(int departmentID) {
 
         Department department = new Department();
@@ -52,7 +51,7 @@ public class UpdateDepartmentServlet extends HttpServlet{
         try {
             department = findMethod.findOne(departmentID);
         } catch (PersistenceException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         return department;
     }

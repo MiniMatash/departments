@@ -53,8 +53,4 @@ public class EmployeePageServlet extends HttpServlet {
             request.getRequestDispatcher("jsp/employee/employeePage.jsp").forward(request,response);
         }
     }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

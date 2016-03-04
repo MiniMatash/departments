@@ -3,6 +3,7 @@ package com.minimatash.persistence.impl;
 import com.minimatash.entities.Employee;
 import com.minimatash.exceptions.PersistenceException;
 import com.minimatash.persistence.EmployeePersistence;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,6 +21,7 @@ public class EmployeeHibernatePersistenceImpl implements EmployeePersistence{
 
     static ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
     static SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
+    private Logger logger = Logger.getLogger(this.getClass());
 
     @Override
     public List<Employee> findAll() throws PersistenceException {
@@ -31,9 +33,12 @@ public class EmployeeHibernatePersistenceImpl implements EmployeePersistence{
 
             employees = crit.list();
         }   catch (Exception e){
-            System.out.println(e);
+            logger.error(e.getMessage(), e);
+        } finally {
+            session.close();
         }
         return employees;
+
     }
 
     @Override
@@ -47,7 +52,9 @@ public class EmployeeHibernatePersistenceImpl implements EmployeePersistence{
                 .add(Restrictions.eq("employeeId", searchId));
             employees = crit.list();
         }   catch (Exception e){
-            System.out.println(e);
+            logger.error(e.getMessage(), e);
+        } finally {
+        session.close();
         }
         Employee employee = employees.get(0);
         return employee;
@@ -58,18 +65,24 @@ public class EmployeeHibernatePersistenceImpl implements EmployeePersistence{
     public void create(Employee employee) throws PersistenceException {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.save(employee);
-        tx.commit();
-        session.close();
+        try {
+            session.save(employee);
+            tx.commit();
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public void update(Employee employee) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.update(employee);
-        tx.commit();
-        session.close();
+        try {
+            session.update(employee);
+            tx.commit();
+        } finally {
+            session.close();
+        }
     }
 
     @Override
@@ -80,10 +93,13 @@ public class EmployeeHibernatePersistenceImpl implements EmployeePersistence{
         try {
             employee = findOne(id);
         } catch (PersistenceException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
-        session.delete(employee);
-        tx.commit();
-        session.close();
+        try {
+            session.delete(employee);
+            tx.commit();
+        } finally {
+            session.close();
+        }
     }
 }
