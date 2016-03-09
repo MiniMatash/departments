@@ -44,7 +44,7 @@ public class EmployeePageServlet extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(employeeObj);
         } else {
-            request.getRequestDispatcher("jsp/employee/employeePage.jsp").forward(request,response);
+            request.getRequestDispatcher("WEB-INF/jsp/employeePage.jsp").forward(request,response);
         }
     }
 }

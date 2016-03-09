@@ -20,7 +20,7 @@ public class UpdateDepartmentServlet extends HttpServlet{
     private Logger logger = Logger.getLogger(this.getClass());
     private int departmentID;
 
-    static ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("WEB-INF/classpath:applicationContext.xml");
+    static ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("classpath:WEB-INF/applicationContext.xml");
     static DepartmentService departmentService = (DepartmentService) context.getBean("departmentService");
 
     public UpdateDepartmentServlet() {
@@ -33,7 +33,7 @@ public class UpdateDepartmentServlet extends HttpServlet{
         departmentID=Integer.parseInt(pArray[1]);
         Department departmentInfo = getInfo(departmentID);
         request.setAttribute("departmentInfo",departmentInfo);
-        request.getRequestDispatcher("jsp/department/updateDepartment.jsp").forward(request,response);
+        request.getRequestDispatcher("WEB-INF/jsp/updateDepartment.jsp").forward(request,response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

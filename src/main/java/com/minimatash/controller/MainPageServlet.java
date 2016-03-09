@@ -14,7 +14,7 @@ public class MainPageServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     {
         try {
-            request.getRequestDispatcher("jsp/mainPage.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/mainPage.jsp").forward(request, response);
         } catch (ServletException e) {
             logger.error(e.getMessage(), e);
         } catch (IOException e) {

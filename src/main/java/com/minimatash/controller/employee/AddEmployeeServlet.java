@@ -28,7 +28,7 @@ public class AddEmployeeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response){
         try {
-            request.getRequestDispatcher("jsp/employee/addEmployee.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/addEmployee.jsp").forward(request, response);
         } catch (ServletException e) {
             logger.error(e.getMessage(), e);
         } catch (IOException e) {

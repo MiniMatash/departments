@@ -35,7 +35,7 @@ public class UpdateEmployeeServlet extends HttpServlet{
         employeeID=Integer.parseInt(pArray[1]);
         Employee employeeInfo = getInfo(employeeID);
         request.setAttribute("employeeInfo",employeeInfo);
-        request.getRequestDispatcher("jsp/employee/updateEmployee.jsp").forward(request,response);
+        request.getRequestDispatcher("WEB-INF/jsp/updateEmployee.jsp").forward(request,response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

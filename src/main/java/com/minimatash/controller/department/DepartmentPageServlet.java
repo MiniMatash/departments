@@ -45,7 +45,7 @@ public class DepartmentPageServlet extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(departmentObj);
         } else {
-            request.getRequestDispatcher("jsp/department/departmentPage.jsp").forward(request,response);
+            request.getRequestDispatcher("WEB-INF/jsp/departmentPage.jsp").forward(request,response);
         }
     }
 
