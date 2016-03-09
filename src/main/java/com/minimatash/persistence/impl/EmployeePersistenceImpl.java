@@ -13,7 +13,7 @@ import java.util.*;
 
 public class EmployeePersistenceImpl implements EmployeePersistence{
 
-    static ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+    static ApplicationContext context = new ClassPathXmlApplicationContext("WEB-INF/applicationContext.xml");
     static JdbcTemplate jdbcTemplate1 = (JdbcTemplate) context.getBean("jdbcTemplate");
 
     @Override

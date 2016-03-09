@@ -7,10 +7,12 @@ import com.minimatash.persistence.DepartmentPersistence;
 import com.minimatash.persistence.impl.DepartmentPersistenceImpl;
 import com.minimatash.service.DepartmentService;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.util.List;
 
+@Service
 public class DepartmentServiceImpl implements DepartmentService {
 
     private DataSource dataSource;
