@@ -8,7 +8,7 @@
     <title>Employee registration</title>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/js/jquery-form.js"></script>
+    <script src="/resources/jquery-form.js"></script>
     <script type="text/javascript">
         Final = function () {
             jQuery('#addForm').ajaxSubmit();

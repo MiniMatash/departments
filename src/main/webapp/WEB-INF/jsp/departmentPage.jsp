@@ -7,11 +7,11 @@
   <title>Main Page Department</title>
 
 
-  <script type="text/javascript" src="/js/jquery-2.1.3.js"></script>
-  <script type="text/javascript" src="/js/jquery-form.js"></script>
-  <script type="text/javascript" src="/js/department/departmentList.js"></script>
-  <script type="text/javascript" src="/js/department/deleteDepartment.js"></script>
-  <script type="text/javascript" src="/js/department/findAllDepartmentScript.js"></script>
+  <script type="text/javascript" src="/resources/jquery-2.1.3.js"></script>
+  <script type="text/javascript" src="/resources/jquery-form.js"></script>
+  <script type="text/javascript" src="/resources/department/departmentList.js"></script>
+  <script type="text/javascript" src="/resources/department/deleteDepartment.js"></script>
+  <script type="text/javascript" src="/resources/department/findAllDepartmentScript.js"></script>
 
 
 </head>

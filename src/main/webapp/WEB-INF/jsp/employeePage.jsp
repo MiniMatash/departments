@@ -7,11 +7,11 @@
   <title>Main Page Employee</title>
 
 
-  <script type="text/javascript" src="/js/jquery-2.1.3.js"></script>
-  <script type="text/javascript" src="/js/jquery-form.js"></script>
-  <script type="text/javascript" src="/js/employee/employeeList.js"></script>
-  <script type="text/javascript" src="/js/employee/deleteEmployee.js"></script>
-  <script type="text/javascript" src="/js/employee/findAllEmployeeScript.js"></script>
+  <script type="text/javascript" src="/resources/jquery-2.1.3.js"></script>
+  <script type="text/javascript" src="/resources/jquery-form.js"></script>
+  <script type="text/javascript" src="/resources/employee/employeeList.js"></script>
+  <script type="text/javascript" src="/resources/employee/deleteEmployee.js"></script>
+  <script type="text/javascript" src="/resources/employee/findAllEmployeeScript.js"></script>
 
 
 </head>

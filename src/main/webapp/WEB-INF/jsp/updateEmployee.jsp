@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Update employee</title>
   <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script src="/js/jquery-form.js"></script>
+  <script src="/resources/jquery-form.js"></script>
 
   <script type="text/javascript">
     Final = function () {
