@@ -1,4 +1,4 @@
-package com.minimatash.controller;
+package com.minimatash.servlet;
 
 import org.apache.log4j.Logger;
 

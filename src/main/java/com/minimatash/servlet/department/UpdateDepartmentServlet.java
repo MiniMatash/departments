@@ -1,4 +1,4 @@
-package com.minimatash.controller.department;
+package com.minimatash.servlet.department;
 
 import com.minimatash.entities.Department;
 import com.minimatash.exceptions.PersistenceException;

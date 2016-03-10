@@ -1,6 +1,6 @@
-package com.minimatash.controller.department;
+package com.minimatash.servlet.employee;
 
-import com.minimatash.service.DepartmentService;
+import com.minimatash.service.EmployeeService;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,17 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-//@WebServlet(urlPatterns = {"/deleteDepartment.html"})
-public class DeleteDepartmentServlet extends HttpServlet {
+//@WebServlet(urlPatterns = {"/deleteEmployee.html"})
+public class DeleteEmployeeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     static ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("classpath:WEB-INF/applicationContext.xml");
-    static DepartmentService departmentService = (DepartmentService) context.getBean("departmentService");
+    static EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String adress = request.getQueryString();
         String[] pArray= adress.split("=");
-        Integer departmentID=Integer.parseInt(pArray[1]);
-        departmentService.delete(departmentID);
+        Integer employeeID=Integer.parseInt(pArray[1]);
+        employeeService.delete(employeeID);
     }
 }

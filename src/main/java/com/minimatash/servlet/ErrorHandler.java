@@ -1,4 +1,4 @@
-package com.minimatash.controller;
+package com.minimatash.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

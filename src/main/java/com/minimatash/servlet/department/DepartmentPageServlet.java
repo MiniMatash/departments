@@ -1,4 +1,4 @@
-package com.minimatash.controller.department;
+package com.minimatash.servlet.department;
 
 import com.google.gson.Gson;
 import com.minimatash.entities.Department;

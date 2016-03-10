@@ -1,4 +1,4 @@
-package com.minimatash.controller.employee;
+package com.minimatash.servlet.employee;
 
 
 import com.minimatash.entities.Employee;
