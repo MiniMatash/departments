@@ -38,13 +38,13 @@ public class DepartmentController {
             List<Department> departmentInfo = new ArrayList<>();
             try {
                 departmentInfo = departmentService.findAll();
+                String departmentObj = gson.toJson(departmentInfo);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(departmentObj);
             } catch (ServiceException e) {
                 logger.error(e.getMessage(), e);
             }
-            String departmentObj = gson.toJson(departmentInfo);
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(departmentObj);
         } else {
             request.getRequestDispatcher("WEB-INF/jsp/departmentPage.jsp").forward(request,response);
         }
@@ -102,7 +102,6 @@ public class DepartmentController {
     }
 
     private Department getInfo(int departmentID) {
-
         Department department = new Department();
         DepartmentPersistenceImpl findMethod = new DepartmentPersistenceImpl();
         try {

@@ -36,13 +36,13 @@ public class EmployeePageServlet extends HttpServlet {
             List<Employee> employeeInfo = new ArrayList<>();
             try {
                 employeeInfo = employeeService.findAll();
-            } catch (ServiceException e) {
+                String employeeObj = gson.toJson(employeeInfo);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(employeeObj);}
+            catch (ServiceException e) {
                 logger.error(e.getMessage(), e);
             }
-            String employeeObj = gson.toJson(employeeInfo);
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(employeeObj);
         } else {
             request.getRequestDispatcher("WEB-INF/jsp/employeePage.jsp").forward(request,response);
         }
