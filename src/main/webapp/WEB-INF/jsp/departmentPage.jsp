@@ -18,6 +18,7 @@
 <body>
 <form action = "/departmentPage" method="GET" id="departmentForm">
   <input type="button" value="Add Department" onclick="location.href='addDepartment.html'">
+  <input type="button" value="Main Page" onclick="location.href='/'">
 </form>
 <div id="answerSectionDepartment">
   <fieldset>

@@ -18,6 +18,7 @@
 <body>
 <form action = "/employeePage" method="GET" id="employeeForm">
   <input type="button" value="Add Employee" onclick="location.href='addEmployee.html'">
+  <input type="button" value="Main Page" onclick="location.href='/'">
 </form>
 <div id="answerSectionEmployee">
   <fieldset>
