@@ -37,7 +37,7 @@
     <tr bgcolor="#c8d8f8">
       <td valign=top colspan=2>
         Date of birth
-        <input type="date" name="DateOfBirth" value="${employeeInfo.dateOfBirth}">
+        <input type="date" name="dateOfBirth" value="${employeeInfo.dateOfBirth}">
       </td>
     </tr>
 
@@ -45,9 +45,11 @@
       <td valign=top>
         Department_ID
 
-        <input type="number" name="department_ID" value="${employeeInfo.departmentId}" max="15" min="1"/>
+        <input type="number" name="departmentID" value="${employeeInfo.departmentId}" max="15" min="1"/>
       </td>
     </tr>
+
+    <input type="hidden" name="employeeID" value="${employeeInfo.employeeId}"/>
 
     <tr bgcolor="#c8d8f8">
       <td valign=top>

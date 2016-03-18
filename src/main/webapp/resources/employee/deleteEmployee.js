@@ -1,7 +1,8 @@
 function deleteEmployee(id){
     $.ajax({
-        url: '/deleteEmployee.html?employeeId='+id,
-        method :'GET',
+        url: '/deleteEmployee?employeeId='+id,
+        method :'POST',
+        dataType : 'json',
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status);
             alert(thrownError);

@@ -40,7 +40,7 @@
         <tr bgcolor="#c8d8f8">
             <td valign=top colspan=2>
                 Date of birth
-                <input type="date" name="DateOfBirth">
+                <input type="date" name="dateOfBirth">
             </td>
         </tr>
 
@@ -48,7 +48,7 @@
             <td valign=top>
                 Department_ID
 
-                <input type="number" name="department_ID" max="15" min="1"/>
+                <input type="number" name="departmentID" max="15" min="1"/>
             </td>
         </tr>
 

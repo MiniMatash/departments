@@ -2,7 +2,7 @@ function employeeList(){
     jQuery('#ajaxResponseEmployee').empty();
     $.ajax({
         dataType: 'json',
-        url: '/employeePage.html?isAjax=true',
+        url: '/employeeList',
         method :'GET',
         success: function (data) {
             var table = $("<table>").appendTo($("#ajaxResponseEmployee"))
@@ -14,8 +14,8 @@ function employeeList(){
                     .append($("<td>").text(empl.dateOfBirth))
                     .append($("<td>").text(empl.validityOfContract))
                     .append($("<td>").text(empl.departmentId))
-                    .append('<a href="updateEmployee.html?UserId='+ empl.employeeId+'"><button type="button">Update Employee</button></a>')
-                    .append('<input type="button" value="Delete employee" id="#EI'+empl.employeeId+'" onclick="deleteEmployee('+empl.employeeId+')">')
+                    .append('<a href="updateEmployee.html?userId='+ empl.employeeId+'"><button type="button">Update Employee</button></a>')
+                    .append('<input type="button" value="Delete employee" id="'+empl.employeeId+'" onclick="deleteEmployee('+empl.employeeId+')">')
             });
         }
     });

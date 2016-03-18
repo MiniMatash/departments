@@ -2,7 +2,7 @@ function departmentList(){
     jQuery('#ajaxResponseDepartment').empty();
     $.ajax({
         dataType: 'json',
-        url: '/departmentPage.html?isAjax=true',
+        url: '/departmentList',
         method :'GET',
         success: function (data) {
             var table = $("<table>").appendTo($("#ajaxResponseDepartment"))
@@ -11,8 +11,8 @@ function departmentList(){
                 $("<tr>").appendTo(table)
                     .append($("<td>").text(dept.departmentId))
                     .append($("<td>").text(dept.departmentName))
-                    .append('<a href="updateDepartment.html?UserId='+dept.departmentId+'"><button type="button">Update Department</button></a>')
-                    .append('<input type="button" value="Delete Department" id="#EI'+dept.departmentId+'" onclick="deleteDepartment('+dept.departmentId+')">')
+                    .append('<a href="updateDepartment.html?departmentId='+dept.departmentId+'"><button type="button">Update Department</button></a>')
+                    .append('<input type="button" value="Delete Department" id="'+dept.departmentId+'" onclick="deleteDepartment('+dept.departmentId+')">')
             });
         }
     });

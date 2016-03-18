@@ -29,6 +29,8 @@
         <input type="text" name="departmentName" value="${departmentInfo.departmentName}" size=15 maxlength=20></td>
     </tr>
 
+    <input type="hidden" name="departmentID" value="${departmentInfo.departmentId}"></td>
+
     <tr bgcolor="#c8d8f8">
       <td align=center colspan=2>
         <input type="button" value="Submit" onclick="Final()"> <input type="reset" value="Reset">
